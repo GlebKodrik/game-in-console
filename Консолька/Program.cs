@@ -18,7 +18,6 @@ namespace GameConsole
         public static int sum;//+
         static void Main(string[] args)
         {
-
             bool status = true;
             reading();
             fix();
@@ -44,16 +43,26 @@ namespace GameConsole
                     if (maze[i][j] == '+') sum += 1;
                 }
         }
-        static void show()
+        static void ShowText(int chis)
         {
-            if (lives <= 0) you_lose();
+            string text_1="", text_2="",text_3="";
+            if (chis == 1) {  text_1 = "Самый бесполезный лабиринт на земле"; text_2 = "Но факт есть фактом XIAOMI ЛУЧШИЙ ЗА СВОИ ДЕНЬГИ!!!";}
+            else if (chis == 2) { Console.Clear(); text_1 = "Да ладно ты смог выйграть в эту тупую игру"; text_2 = "Мои поздравления даунич";text_3 = "\n\t\t\t\t\t\t Пошел нахер отсюдого\n\n\n"; }
+            else if (chis == 3) { Console.Clear(); text_1 = "Ты проиграл даунич"; text_2 = "Выйди от сюдого убожество"; }
             Console.SetCursorPosition(0, 0);
             HeaderLine("╔═╗");
             HeaderLine("║ ║");
-            HeaderLine("║║", "Самый бесполезный лабиринт на земле");
-            HeaderLine("║║", "Но факт есть фактом XIAOMI ЛУЧШИЙ ЗА СВОИ ДЕНЬГИ!!!");
+            HeaderLine("║║", text_1);
+            HeaderLine("║║", text_2);
             HeaderLine("║ ║");
             HeaderLine("╚═╝");
+            Console.WriteLine(text_3);
+            if (chis == 3 || chis == 2) { Console.ReadKey(); System.Environment.Exit(0); }
+        }
+        static void show()
+        {
+            if (lives <= 0) ShowText(3);
+            ShowText(1);
             for (int i = 0; i < maze.Count; i++)
             {
                 for (int j = 0; j < maze[i].Length; j++)
@@ -87,8 +96,6 @@ namespace GameConsole
                 }
                 Console.WriteLine();
             }
-
-
             string str = "";
             if (score == 0)
             {
@@ -111,32 +118,6 @@ namespace GameConsole
             Console.ForegroundColor = ConsoleColor.White;
 
         }
-        static void you_win()
-        {
-            Console.Clear();
-            HeaderLine("╔═╗");
-            HeaderLine("║ ║");
-            HeaderLine("║║", "Да ладно ты смог выйграть в эту тупую игру");
-            HeaderLine("║║", "Мои поздравления даунич");
-            HeaderLine("║ ║");
-            HeaderLine("╚═╝");
-            Console.WriteLine("\n\t\t\t\t\t\t Пошел нахер отсюдого");
-            Console.WriteLine("\n\n\n");
-            Console.ReadKey();
-            System.Environment.Exit(0);
-        }
-        static void you_lose()
-        {
-            Console.Clear();
-            HeaderLine("╔═╗");
-            HeaderLine("║ ║");
-            HeaderLine("║║", "Ты проиграл даунич");
-            HeaderLine("║║", "Выйди от сюдого убожество");
-            HeaderLine("║ ║");
-            HeaderLine("╚═╝");
-            Console.ReadKey();
-            System.Environment.Exit(0);
-        }
         static void HeaderLine(string charect)
         {
             Console.Write(charect[0]);
@@ -157,78 +138,41 @@ namespace GameConsole
         }
         static void fix()
         {
-            for (int i = 1; i < maze.Count - 1; i++)
-                for (int j = 1; j < maze[i].Length - 1; j++)
+            for (int i = 1; i < maze.Count - 1; i++) { 
+                for (int j = 1; j < maze[i].Length - 1; j++) { 
                     if (maze[i][j] == '0' && maze[i + 1][j] == '0' && maze[i - 1][j] == '0'
                         && maze[i][j - 1] == '0' && maze[i][j + 1] == '0') maze[i][j] = '╬';
-
-            for (int i = 1; i < maze.Count - 1; i++)
-                for (int j = 1; j < maze[i].Length - 1; j++)
                     if (maze[i][j] == '0' && (maze[i - 1][j] == '0' || maze[i - 1][j] != ' ') && (maze[i + 1][j] == '0'
-                        || maze[i + 1][j] != ' ') && (maze[i][j + 1] == '0' || maze[i][j + 1] != ' ')) maze[i][j] = '╠';
-
-            for (int i = 1; i < maze.Count - 1; i++)
-                for (int j = 1; j < maze[i].Length - 1; j++)
+                    || maze[i + 1][j] != ' ') && (maze[i][j + 1] == '0' || maze[i][j + 1] != ' ')) maze[i][j] = '╠';
                     if (maze[i][j] == '0' && (maze[i - 1][j] == '0' || maze[i - 1][j] != ' ') && (maze[i + 1][j] == '0'
-                        || maze[i + 1][j] != ' ') && (maze[i][j - 1] == '0' || maze[i][j - 1] != ' ')) maze[i][j] = '╣';
-
-            for (int i = 1; i < maze.Count - 1; i++)
-                for (int j = 1; j < maze[i].Length - 1; j++)
+                    || maze[i + 1][j] != ' ') && (maze[i][j - 1] == '0' || maze[i][j - 1] != ' ')) maze[i][j] = '╣';
                     if (maze[i][j] == '0' && (maze[i + 1][j] == '0' || maze[i + 1][j] != ' ') && (maze[i][j - 1] == '0'
                         || maze[i][j - 1] != ' ') && (maze[i][j + 1] == '0' || maze[i][j + 1] != ' ')) maze[i][j] = '╦';
-
-            for (int i = 1; i < maze.Count - 1; i++)
-                for (int j = 1; j < maze[i].Length - 1; j++)
                     if (maze[i][j] == '0' && (maze[i - 1][j] == '0' || maze[i - 1][j] != ' ') && (maze[i][j - 1] == '0'
                         || maze[i][j - 1] != ' ') && (maze[i][j + 1] == '0' || maze[i][j + 1] != ' ')) maze[i][j] = '╩';
-
-            for (int i = 1; i < maze.Count - 1; i++)
-                for (int j = 1; j < maze[i].Length - 1; j++)
                     if (maze[i][j] == '0' && (maze[i - 1][j] == '0' || maze[i - 1][j] != ' ')
                         && (maze[i][j - 1] == '0' || maze[i][j - 1] != ' ')) maze[i][j] = '╝';
-
-            for (int i = 1; i < maze.Count - 1; i++)
-                for (int j = 1; j < maze[i].Length - 1; j++)
                     if (maze[i][j] == '0' && (maze[i - 1][j] == '0' || maze[i - 1][j] != ' ')
                         && (maze[i][j + 1] == '0' || maze[i][j + 1] != ' ')) maze[i][j] = '╚';
-
-            for (int i = 1; i < maze.Count - 1; i++)
-                for (int j = 1; j < maze[i].Length - 1; j++)
                     if (maze[i][j] == '0' && (maze[i + 1][j] == '0' || maze[i + 1][j] != ' ')
                         && (maze[i][j + 1] == '0' || maze[i][j + 1] != ' ')) maze[i][j] = '╔';
-
-            for (int i = 1; i < maze.Count - 1; i++)
-                for (int j = 1; j < maze[i].Length - 1; j++)
                     if (maze[i][j] == '0' && (maze[i + 1][j] == '0' || maze[i + 1][j] != ' ')
                         && (maze[i][j - 1] == '0' || maze[i][j - 1] != ' ')) maze[i][j] = '╗';
-
-            for (int i = 1; i < maze.Count - 1; i++)
-                for (int j = 1; j < maze[i].Length - 1; j++)
                     if (maze[i][j] == '0' && (maze[i][j + 1] == '0' || maze[i][j - 1] == '0'
                         || maze[i][j + 1] != ' ' || maze[i][j - 1] != ' ')) maze[i][j] = '═';
-
-            for (int i = 1; i < maze.Count - 1; i++)
-                for (int j = 1; j < maze[i].Length - 1; j++)
                     if (maze[i][j] == '0' && (maze[i + 1][j] == '0' || maze[i - 1][j] == '0'
                         || maze[i + 1][j] != ' ' || maze[i - 1][j] != ' ')) maze[i][j] = '║';
+                }
+            }
         }
-        static void run_i(int i, int j, int sign, bool check)
+        static void run_i(int i, int j, int sign, bool check,bool updown)
         {
             int s;
             if (check) s = -1; else s = 1;
             maze[i][j] = ' ';
-            maze[i - (sign * 1)*s][j] = hero;
+            if (!updown) maze[i - (sign * 1)*s][j] = hero; else maze[i][j-(sign * 1)*s] = hero;
             show();
-            if (check) { lives--; checKed(i, j, sign); show(); }
-        }
-        static void run_j(int i, int j, int sign, bool check)
-        {
-            int s;
-            if (check) s = -1; else s = 1;
-            maze[i][j] = ' ';
-            maze[i][j-(sign * 1)*s] = hero;
-            show();
-            if (check) { lives--; checKeds(i, j, sign); show(); }
+            if (check) { lives--; if (!updown) checKed(i, j, sign);  else checKeds(i, j, sign); show(); }
         }
         static void checKed(int i, int j, int sign)
         {
@@ -258,29 +202,42 @@ namespace GameConsole
                 maze[i][j] = hero;
             }
         }
+        static void ConsoleUpDownRightLeft(int x, int y, int sign, bool check)
+        {
+            int a, z;
+            bool ch = false;
+            int mark_1, mark_2;
+            if (check)
+            {
+                a = (sign * (-1));
+                z = 0;
+                ch = false;
 
-        static void ConsoleUpDown(int x, int y, int sign)
-        {
-            int mark_1, mark_2;
+            }
+            else 
+            {
+                a = 0;
+                z = (sign * (-1));
+                ch = true;
+            }
             if (sign == 1) { mark_1 = 1; mark_2 = -1; } else { mark_1 = -1; mark_2 = 1; };
-            if (maze[x - (sign * (-1))][y] == ' ')
+            if (maze[x - a][y - z] == ' ')
             {
-                run_i(x, y, mark_2, false);
+                run_i(x, y, mark_2, false, ch);
                 show();
             }
-            else if (maze[x - (sign * (-1))][y] == death)
+            else if (maze[x - a][y - z] == death)
             {
-                run_i(x, y, mark_1, true);
+                run_i(x, y, mark_1, true, ch);
                 show();
             }
-            else if (maze[x - (sign * (-1))][y] == '+')
+            else if (maze[x - a][y - z] == '+')
             {
                 score++;
-                Console.Clear();
-                run_i(x, y, mark_2, false);
+                run_i(x, y, mark_2, false, ch);
                 show();
             }
-            else if (maze[x - (sign * (-1))][y] == '-')
+            else if (maze[x - a][y - z] == '-')
             {
                 if (score <= 0)
                 {
@@ -289,51 +246,17 @@ namespace GameConsole
                 }
                 else
                 {
-                    run_i(x, y, mark_2, false);
+                    run_i(x, y, mark_2, false, ch);
                     score--;
                     show();
                 }
-                Console.Clear();
-                show();
             }
-        }
-        static void ConsoleRightLeft(int x, int y, int sign)
-        {
-            int mark_1, mark_2;
-            if (sign == 1) { mark_1 = 1; mark_2 = -1; } else { mark_1 = -1; mark_2 = 1; };
-            if (maze[x][y - (sign * (-1))] == ' ')
+            else if (maze[x - a][y - z] == '=')
             {
-                run_j(x, y, mark_2, false);
+                ShowText(2);
                 show();
             }
-            else if (maze[x][y - (sign * (-1))] == death)
-            {
-                run_j(x, y, mark_1, true);
                 show();
-            }
-            else if (maze[x][y - (sign * (-1))] == '+')
-            {
-                score++;
-                run_j(x, y, mark_2, false);
-                Console.Clear();
-                show();
-            }
-            else if (maze[x][y - (sign * (-1))] == '-')
-            {
-                if (score <= 0)
-                {
-                    score = 0;
-                    show();
-                }
-                else
-                {
-                    run_j(x, y, mark_2, false);
-                    score--;
-                    show();
-                }
-                Console.Clear();
-                show();
-            }
         }
         static void move(ConsoleKeyInfo key)
         {
@@ -350,19 +273,19 @@ namespace GameConsole
             switch (key.Key)
             {
                 case ConsoleKey.Escape:
-                    you_lose();
+                    ShowText(3);
                     break;
                 case ConsoleKey.UpArrow:
-                    ConsoleUpDown(x, y, -1);
+                    ConsoleUpDownRightLeft(x, y, -1,true);
                     break;
                 case ConsoleKey.DownArrow:
-                    ConsoleUpDown(x, y, 1);
+                    ConsoleUpDownRightLeft(x, y, 1, true);
                     break;
                 case ConsoleKey.LeftArrow:
-                    ConsoleRightLeft(x, y, -1);
+                    ConsoleUpDownRightLeft(x, y, -1, false);
                     break;
                 case ConsoleKey.RightArrow:
-                    ConsoleRightLeft(x, y, 1);
+                    ConsoleUpDownRightLeft(x, y, 1, false);
                     break;
             }
         }

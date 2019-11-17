@@ -1,0 +1,12 @@
+C:\Users\kl\Desktop\ConisoleGime\bin\Debug\ConisoleGime.exe.config
+C:\Users\kl\Desktop\ConisoleGime\bin\Debug\ConisoleGime.exe
+C:\Users\kl\Desktop\ConisoleGime\bin\Debug\ConisoleGime.pdb
+C:\Users\kl\Desktop\ConisoleGime\obj\Debug\ConisoleGime.csprojAssemblyReference.cache
+C:\Users\kl\Desktop\ConisoleGime\obj\Debug\ConisoleGime.exe
+C:\Users\kl\Desktop\ConisoleGime\obj\Debug\ConisoleGime.pdb
+C:\Users\kl\Desktop\Работа с c#\Игры конаплев\Коесолька\bin\Debug\ConisoleGime.exe.config
+C:\Users\kl\Desktop\Работа с c#\Игры конаплев\Коесолька\bin\Debug\ConisoleGime.exe
+C:\Users\kl\Desktop\Работа с c#\Игры конаплев\Коесолька\bin\Debug\ConisoleGime.pdb
+C:\Users\kl\Desktop\Работа с c#\Игры конаплев\Коесолька\obj\Debug\ConisoleGime.csprojAssemblyReference.cache
+C:\Users\kl\Desktop\Работа с c#\Игры конаплев\Коесолька\obj\Debug\ConisoleGime.exe
+C:\Users\kl\Desktop\Работа с c#\Игры конаплев\Коесолька\obj\Debug\ConisoleGime.pdb
